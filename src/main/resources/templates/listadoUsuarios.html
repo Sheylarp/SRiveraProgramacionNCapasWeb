@@ -1,0 +1,184 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layaout"
+      layout:decorate="~{layout}"> 
+
+    <body layout:fragment="body">
+
+        <!--    Desplegar una tabla con la información de Listado de usuarios-->
+        <div class="container">
+            <h1>Usuarios</h1>
+            <br>
+            <!--    <ul>    
+                    EL - Expression language
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.nombre}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.email}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.password}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.fechanacimiento}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.apellidopaterno}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.apellidomaterno}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.sexo}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.telefono}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.celular}"></li>
+                    <li th:each="usuario : ${usuarios}" th:text="${usuario.curp}"></li>
+                </ul>-->
+
+            <form h:action="@{/usuario/listado}" method="post" th:object="${usuariobusqueda}" >
+                <div class="row">
+                    <div class="col-md-3">
+                        <label  class="form-label" >Nombre: </label>
+                        <div class="input-group">
+                            <div class="input-group-text"><i class="bi bi-person-circle"></i></div>
+                            <input type="text" class="form-control" placeholder="Nombre" name="nombre" 
+                                   id="txtNombre"  onkeypress="return sololetras(event,'lblNombre')" th:field="*{nombre}">
+                            <!--                             th:field="*{usuario.nombre}"-->
+                        </div>
+                        <label id="lblNombre"></label>
+                    </div>
+                    <div class="col-md-3">
+                        <label  class="form-label">Apellido Paterno </label>
+                        <input type="text" class="form-control" placeholder="Nombre" name="apellidopaterno" 
+                               th:field="*{apellidopaterno}" id="txtApellidopaterno" 
+                               onkeypress="return sololetras(event,'lblApellidopaterno')" >
+                        <label id="lblApellidopaterno"></label>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label  class="form-label">Apellloido Materno </label>
+                        <input type="text" class="form-control" placeholder="Apellido Materno" name="apellidomaterno" 
+                               th:field="*{apellidomaterno}" id="txtApellidomaterno" 
+                               onkeypress="return sololetras(event,'lblApellidomaterno')" >
+                        <label id="lblApellidomaterno"></label>
+                    </div>
+
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div class="row">
+                <!--                <a th:href="@{/usuario/add}" class="btn btn-success col-md-4">Agregar</a>-->
+                <a th:href="@{/usuario/form/{idusuario}(idusuario=0)}" class="btn btn-success">Agregar</a>
+            </div>
+            <br><br>
+
+            <table id="myTable" class="table" > 
+                <thead>
+                    <tr>
+                        <th scope="col">Eliminar</th>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">idUsuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Nombre de usuario</th>
+                        <th scope="col">Apellidos</th>
+                        <!-- <th scope="col">Apellido materno</th>-->
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Telefono /Celular</th>
+                        <!-- <th scope="col">Celular</th>-->
+                        <th scope="col">CURP</th>
+                        <th scope="col">Dirección</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Modificar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario:${usuarios}">
+                        <!--                        +direccion:${direcciones}-->
+                        <td> 
+                            <a th:href="@{/usuario/eliminarUsuario/{idusuario}
+                               (idusuario=${usuario.idusuario})}" class="btn btn-danger">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </td>
+                    
+                        <td>
+                            <!--<img  th:src="@{'data:image/jpeg;base64,'+${usuario.imagen}}" />-->
+                            <img th:if="${usuario.imagen != null and usuario.imagen != ''}" 
+                                 th:src="'data:image/png;base64,' + ${usuario.imagen}" 
+                                 style="max-width: 100%; max-height: 80px;"
+                                 alt="Imagen desde la base de datos" /> 
+                            <img th:unless="${usuario.imagen != null and usuario.imagen != ''}" src="/image/usuario.jpg" 
+                                 style="max-width: 100%; max-height: 80px;" 
+                                 alt="Imagen por defecto" />
+
+                            <!-- <img th:if="${usuario.imagen!=null and usuario.imagen !=''}" th:src="/image/usuario.jpg" />
+                                 <img th: unless="${usuario.imagen!=null and usuario.imagen !=''}" th:src="'data:image/jpg;base64,'+${usuario.imagen}" />
+                            -->
+                        </td>
+                        <td th:text="${usuario.idusuario}"></td>
+                        <td th:text="${usuario.nombre}"></td>
+                        <td th:text="${usuario.email}"></td> 
+                        <td th:text="${usuario.password}"></td>
+                        <td th:text="${usuario.fechanacimiento}"></td>
+                        <td th:text="${usuario.username}"></td>
+                        <td th:text="${usuario.apellidopaterno}+ '    ' +${usuario.apellidomaterno}"></td>
+                        <!--<td th:text="${usuario.apellidomaterno}"></td>-->
+                        <td th:text="${usuario.sexo}"></td>
+                        <td th:text="${usuario.telefono}+ ' '+${usuario.celular}"></td>
+                        <!--<td th:text="${usuario.celular}"></td>-->
+                        <td th:text="${usuario.curp}"></td>
+                        <td>
+                            <span th:each="direccion : ${direcciones}" th:if="${usuario.idusuario ==direccion.usuario.idusuario}">
+                                <span th:text="${direccion.calle}+' '+ ${direccion.numerointerior}+' '+${direccion.numeroexterior}"></span>
+                            </span>      
+                        </td>
+
+
+                        <td>
+                            <div th:if="${usuario.status == 'N'}" class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" th:id="${usuario.idusuario}" onchange="ChangeStatus(this)">
+                            </div>
+                            <div th:unless="${usuario.status == 'N'}" class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" th:id="${usuario.idusuario}" onchange="ChangeStatus(this)" checked>
+                            </div>
+                        </td>
+
+                        <td> 
+                            <!--                            <a th:href="@{/usuario/editarUsuario/{idusuario}
+                                                           (idusuario=${usuario.idusuario})}" class="btn btn-warning">-->
+
+                            <a th:href="@{/usuario/form/{idusuario}(idusuario=${usuario.idusuario})}" class="btn btn-warning">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--        <footer layout:fragment="footer" layout:include="fragments/init :: extra" th:remove="tag">
+                        <p>Footer List Page</p>
+                    </footer>-->
+
+        <footer layout:fragment="footer"</footer>
+
+
+    </body>
+
+</html>
+<script>
+
+    function ChangeStatus(e) {
+    var idUsuario= e.id
+    var status= e.checked
+    $.ajax({
+    type: "GET",
+    url: "/usuario/ChangeStatus",
+    datatype: "json",
+    data: {idUsuario: idUsuario, status:status},
+    succes:{},
+    error: function (){
+    alter ("Error");
+    }  
+    });
+    }
+
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+    } );
+
+</script>
