@@ -4,49 +4,130 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layaout"
       layout:decorate="~{layout}"> 
     <body layout:fragment="body">
-
         <div class="container">
+            <h2>Inmueble</h2>
+            <hr>
+            <br>
+            <form h:action="@{/inmueble/listado}" method="post" th:object="${inmueblebusqueda}" >
 
-            <h1>Lista de Tipo de Inmuebles </h1>
-            <div class="row">
-                <!--                <a th:href="@{/usuario/add}" class="btn btn-success col-md-4">Agregar</a>-->
-                <a th:href="@{/inmobiliaria/form/{idtipoinmueble}(idtipoinmueble=0)}" class="btn btn-success">Agregar</a>
-            </div>
-            <br><br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Eliminar</th>
-                        <th scope="col">IdTipoInmueble</th>
-                        <th scope="col">Nombre Tipo de Inmueble</th>
-                        <th scope="col">Actualizar</th>
-                        <th scope="col">idServicio</th>
-                        <th scope="col">Servicio</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="tipoinmueble: ${tipoInmuebles}">
-                        <td>
-                            <a th:href="@{/inmobiliaria/eliminar/{idtipoinmueble}
-                               (idtipoinmueble=${tipoinmueble.idtipoinmueble})}" class="btn btn-danger">
-                                <i class="bi bi-trash-fill"></i>
-                            </a>
-                        </td>
-                        <td th:text="${tipoinmueble.idtipoinmueble}"></td>
-                        <td th:text="${tipoinmueble.nombre}"></td>
+                <div class="row">
+                    <div class="col-md-2">
+                        <select class="form-select" name="tipoinmueble" id="ddlTipoInmueble">
+                            <option value="0">Tipo Inmueble</option>
+                            <option th:each="tipoInmueble:${tipoInmuebles}" th:value="${tipoInmueble.idtipoinmueble}" th:text="${tipoInmueble.nombre}"></option>
+                        </select>
+                        <br>
+                        <div class="card" style="width: 12rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Tipo Inmueble</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="col-md-3">
+                                    <a class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i></a>
+                                    <a  class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                        <td>
-                            <a th:href="@{/inmobiliaria/editartipoInmueble/{idtipoinmueble}(idtipoinmueble=${tipoinmueble.idtipoinmueble})}" class="btn btn-warning">
-                                <i class="bi bi-pencil-fill"></i>
-                            </a>
-                        </td>
-                    <tr th:each="servicio: ${serviciods} "></tr>
-                        <td th:tex="${servicio}"></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
+                    <div class="col-md-2"><select class="form-select" name="servicio" id="ddlServicio" >
+                            <option value="0">Servicio</option>
+                            <option th:each="servicio : ${servicios}" th:value="${servicio.idservicio}" th:text="${servicio.nombre}"></option>
+                        </select>
+                        <br>
+                        <div class="card" style="width: 12rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Servicio</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                               <div class="col-md-3">
+                                    <a class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i></a>
+                                    <a  class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="col-md-2">
+                        <select class="form-select" name="amenidad" id="ddlAmenidad" >
+                            <option value="0">Amenidad</option>
+                            <option th:each="amenidad : ${amenidades}" th:value="${amenidad.idamenidad}" th:text="${amenidad.nombre}"></option>
+
+                        </select>
+                        <br>
+                        <div class="card" style="width: 12rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Amenidad</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <div class="col-md-3">
+                                    <a class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i></a>
+                                    <a  class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <select class="form-select" name="operacion" id="ddlOperacion" >
+                            <option value="0">Operación</option>
+                            <option th:each="operacion : ${operaciones}" th:value="${operacion.idoperacion}" th:text="${operacion.nombre}"></option>
+
+                        </select>
+                        <br>
+                        <div class="card" style="width: 12rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Operación</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <div class="col-md-3">
+                                    <a class="btn btn-danger">
+                                        <i class="bi bi-trash-fill"></i></a>
+                                    <a  class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <a class="btn btn-success">Agregar</a>
+                    </div>
+
+                </div>
+                <!--<script>
+                $(document).ready(function () {
+                            $("#ddlTipoInmueble").change(function () {
+                                $.ajax({
+                                type: "GET",
+                                url: "/inmueble/GetAll", // La URL del controlador
+                                dataType: "json",
+                                data: {#idTipoInmueble $("#ddlTipoInmueble").val()},
+                        success: function (tipoInmuebles) {
+                            $("#ddlTipoInmueble").empty();
+                            $("#ddlTipoInmueble").append('<option value="0">' + 'Seleccionar' + '</option>');
+                            $.each(estados, function (i, estado) {
+                            $("#ddlTipoInmueble").append('<option value="'
+                                + tipoInmueble.idtipoinmueble + '">'
+                                + tipoInmueble.nombre + '</option>');
+                                });
+                        },
+                        error: function () {
+                            alert("Error al obtener los datos.");
+                            }
+                            });
+                        });
+                        </script>-->
+
+            </form>
         </div>
-    </body>
 </html>

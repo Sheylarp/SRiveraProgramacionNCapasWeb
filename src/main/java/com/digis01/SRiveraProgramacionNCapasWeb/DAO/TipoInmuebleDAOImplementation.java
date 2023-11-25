@@ -28,7 +28,7 @@ public class TipoInmuebleDAOImplementation implements ITipoInmuebleDAO{
     
 
     @Override
-    public List<TipoInmueble> GetAll(TipoInmueble tipoInmueble) {
+    public List<TipoInmueble> GetAll() {
         TypedQuery <TipoInmueble> query=entityManager.createQuery("FROM TipoInmueble", TipoInmueble.class);
         List<TipoInmueble> tipoInmuebles =query.getResultList();
         return tipoInmuebles;

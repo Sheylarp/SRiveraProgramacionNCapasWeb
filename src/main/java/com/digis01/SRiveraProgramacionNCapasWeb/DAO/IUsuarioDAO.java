@@ -25,6 +25,7 @@ public interface IUsuarioDAO {
      void Delete (int idusuarioeliminado);
      
      void ChangeStatus (int idUsuario, boolean status);
+     Usuario GetByEmail (Usuario usuario);
      
     
 }

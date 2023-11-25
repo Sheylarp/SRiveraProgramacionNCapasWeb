@@ -4,17 +4,19 @@
  */
 package com.digis01.SRiveraProgramacionNCapasWeb.DAO;
 
-import com.digis01.SRiveraProgramacionNCapasWeb.DL_JPA.TipoInmueble;
+import com.digis01.SRiveraProgramacionNCapasWeb.DL_JPA.Inmueble;
 import java.util.List;
 
 /**
  *
  * @author digis
  */
-public interface ITipoInmuebleDAO {
- List <TipoInmueble> GetAll();   
- int Add(TipoInmueble tipoInmueble );
- void Update (TipoInmueble tipoInmueble);
- TipoInmueble GetById (int idtipoInmuebleeditable);
- void Delete (int idtipoInmuebleeliminado);
+public interface IInmueble {
+    
+    List<Inmueble>GetAll(Inmueble inmuebe);
+     int Add (Inmueble inmueble);
+    void Update (Inmueble inmueble);
+    Inmueble GetById (int idinmuebleeditable);
+    void Delete (int idinmuebleeliminado);
+    
 }

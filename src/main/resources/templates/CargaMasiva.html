@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layaout"
+      layout:decorate="~{layout}"> 
+
+    <body layout:fragment="body">
+        <div class="container">
+
+
+            <br>
+            <div class="panel_error" id="DivAEsconder" ALIGN="center">
+                <button id="btnCargaMasiva" type="button" onclick="cargaMasiva()"
+                        class="btn btn-dark">Cargar datos</button>
+            </div>
+            <div style="display:none;">
+                <button id="previousBtn">Previous</button>
+                <button id="finishBtn">Finish</button>
+            </div>
+            <!--            <form action="/CargaMasiva" method="post" enctype="multipart/form-data" >
+                            <input name="atxt" id="carga" type="file" accept=".txt" hidden>
+                            <button id="txt" style="display:none;" class="btn btn-outline-dark btn-excel">TXT</button>
+                            <div style="display: none;"> <select name="archivoTxt" id="OpcTxt"></select>
+                                <select name="archivoExcel" id="OpcExcel"></select>
+                            </div></form>
+                        <form action="/CargaMasiva" method="post" enctype="multipart/form-data" >
+                            <input name="aexcel" id="carga" type="file" accept=".xlsx" hidden>
+                            <button id="excel"  style="display:none;" class="btn btn-outline-dark btn-excel">EXCEL</button>
+                        </form>-->
+            <br>
+
+            <form action="/CargaMasiva/Excel" method="post" enctype="multipart/form-data" >
+                <input type="file" name="aexcel" id="aexcel" accept=".xlsx" >
+                <button id="excelButton" class="btn btn-outline-dark btn-logo-img">EXCEL</button>
+            </form>
+            
+             <form action="/CargaMasiva/Txt" method="post" enctype="multipart/form-data">
+                <input type="file" name="atxt" id="atxt" accept=".txt" >
+                <button id="txtButton" class="btn btn-outline-dark btn-logo-img">TXT</button>
+            </form>
+
+
+
+            <!--            <form action="CargaMasivaExcel" method="post" enctype="multipart/form-data" >
+                            <button type="submit" class="btn btn-success" >Enviar</button>
+                        </form>-->
+
+
+            <table th:if="${errores}" class="table table-striped" style="width: 50%; height: 30px; " ALIGN="center">
+                <thead>
+
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fila</th>
+                        <th scope="col">Error</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="error, iterStat : ${errores}">
+                        <th th:text="${iterStat.count}"></th>
+                        <td th:text="${error.row}"></td>
+                        <td th:text="${error.errorMessage}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td colspan="2"> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>     
+
+    </body>
+
+
+</html>
+<script>
+    function cargaMasiva() {
+    document.getElementById('DivAEsconder').setAttribute('style', "display: none;");
+
+    let botonPrevio =  document.getElementById('txt');
+    botonPrevio.setAttribute('style', "");
+    let excel = document.getElementById('excel');
+    excel.setAttribute('style', "");
+
+    }
+    $(".btn-excel").click(function(){
+    var subir_btn = document.getElementById("carga");
+    subir_btn.click();
+    });
+
+    document.getElementById("excelButton").addEventListener("click", function() {
+    document.getElementById("excelInput").click();
+    });
+document.getElementById("txtButton").addEventListener("click", function() {
+    document.getElementById("txtlInput").click();
+    });
+
+</script>

@@ -15,31 +15,32 @@ import jakarta.persistence.Id;
  * @author digis
  */
 @Entity
-public class Antiguedad {
+public class Operacion {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int idantiguedad;
+    private int idoperacion;
     @Basic
-   private String nombre;
+    private String nombre;
 
-    public Antiguedad() {
+    public Operacion() {
     }
 
-    public Antiguedad(int idantiguedad) {
-        this.idantiguedad = idantiguedad;
+    public Operacion(int idoperacion) {
+        this.idoperacion = idoperacion;
     }
 
-    public Antiguedad(int idantiguedad, String nombre) {
-        this.idantiguedad = idantiguedad;
+    public Operacion(int idoperacion, String nombre) {
+        this.idoperacion = idoperacion;
         this.nombre = nombre;
     }
 
-    public int getIdantiguedad() {
-        return idantiguedad;
+    public int getIdoperacion() {
+        return idoperacion;
     }
 
-    public void setIdantiguedad(int idantiguedad) {
-        this.idantiguedad = idantiguedad;
+    public void setIdoperacion(int idoperacion) {
+        this.idoperacion = idoperacion;
     }
 
     public String getNombre() {
@@ -51,4 +52,5 @@ public class Antiguedad {
     }
     
     
+
 }

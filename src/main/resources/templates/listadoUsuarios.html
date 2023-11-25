@@ -8,7 +8,35 @@
         <!--    Desplegar una tabla con la información de Listado de usuarios-->
         <div class="container">
             <h1>Usuarios</h1>
-            <br>
+
+
+            <!--                        <div class="sport-table-wager" id="btnOculto">
+                                        <button type="button" class="btn btn-info"
+                                                value="Ocultar" onclick="ocultar('btnOculto')">Cargar datos</button>
+                                     
+                                    </div>-->
+
+           
+            <div class="panel_error" id="DivAEsconder">
+                <button id="btnCargaMasiva" type="button" onclick="cargaMasiva()"
+                        class="btn btn-dark">Cargar datos</button>
+            </div>
+            <div style="display:none;">
+                <button id="previousBtn">Previous</button>
+                <button id="finishBtn">Finish</button>
+            </div>
+
+            <button id="txt" style="display:none;" class="btn btn-outline-dark">TXT</button>
+            <div style="display: none;"> <select name="archivoTxt" id="OpcTxt"></select>
+                <select name="archivoExcel" id="OpcExcel"></select>
+            </div>
+            <button id="excel" style="display:none;" class="btn btn-outline-dark">EXCEL</button>
+        
+
+
+
+
+            
             <!--    <ul>    
                     EL - Expression language
                     <li th:each="usuario : ${usuarios}" th:text="${usuario.nombre}"></li>
@@ -23,7 +51,7 @@
                     <li th:each="usuario : ${usuarios}" th:text="${usuario.curp}"></li>
                 </ul>-->
 
-            <form h:action="@{/usuario/listado}" method="post" th:object="${usuariobusqueda}" >
+            <form th:action="@{/usuario/listado}" method="post" th:object="${usuariobusqueda}" >
                 <div class="row">
                     <div class="col-md-3">
                         <label  class="form-label" >Nombre: </label>
@@ -52,7 +80,7 @@
                     </div>
 
                     <div class="col-md-3">
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                 </div>
             </form>
@@ -95,7 +123,7 @@
                                 <i class="bi bi-trash-fill"></i>
                             </a>
                         </td>
-                    
+
                         <td>
                             <!--<img  th:src="@{'data:image/jpeg;base64,'+${usuario.imagen}}" />-->
                             <img th:if="${usuario.imagen != null and usuario.imagen != ''}" 
@@ -180,5 +208,46 @@
     $(document).ready( function () {
     $('#myTable').DataTable();
     } );
+
+    var flag =  false;
+
+
+    function ocultar(id){
+    var elemento = document.getElementById(id);
+    elemento.style.display = "none";
+    }
+
+    var flag =  false;
+    $("#botones").mouseenter(function() {
+    if(!flag){
+    flag =true;
+    $("#resto").show(200, function(){
+    flag = false;
+    });
+    }
+    }).mouseleave(function() {
+    $("#resto").hide(200);
+    });
+    
+      $(function(){
+        $('#show').click(function(){
+          $('#button').toggle();
+        });
+      })
+      
+      
+
+
+
+ function cargaMasiva() {
+            document.getElementById('DivAEsconder').setAttribute('style', "display: none;");
+
+            let botonPrevio =  document.getElementById('txt');
+            botonPrevio.setAttribute('style', "");
+            let excel = document.getElementById('excel');
+            excel.setAttribute('style', "");
+
+        }
+
 
 </script>

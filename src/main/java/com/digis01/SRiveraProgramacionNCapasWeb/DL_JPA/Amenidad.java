@@ -4,7 +4,6 @@
  */
 package com.digis01.SRiveraProgramacionNCapasWeb.DL_JPA;
 
-import jakarta.persistence.Basic;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,31 +14,31 @@ import jakarta.persistence.Id;
  * @author digis
  */
 @Entity
-public class Antiguedad {
+public class Amenidad {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   private int idantiguedad;
-    @Basic
-   private String nombre;
+    private int idamenidad;
+    private String nombre;
 
-    public Antiguedad() {
+    public Amenidad() {
     }
 
-    public Antiguedad(int idantiguedad) {
-        this.idantiguedad = idantiguedad;
+    public Amenidad(int idamenidad) {
+        this.idamenidad = idamenidad;
     }
 
-    public Antiguedad(int idantiguedad, String nombre) {
-        this.idantiguedad = idantiguedad;
+    public Amenidad(int idamenidad, String nombre) {
+        this.idamenidad = idamenidad;
         this.nombre = nombre;
     }
 
-    public int getIdantiguedad() {
-        return idantiguedad;
+    public int getIdamenidad() {
+        return idamenidad;
     }
 
-    public void setIdantiguedad(int idantiguedad) {
-        this.idantiguedad = idantiguedad;
+    public void setIdamenidad(int idamenidad) {
+        this.idamenidad = idamenidad;
     }
 
     public String getNombre() {
@@ -49,6 +48,7 @@ public class Antiguedad {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
     
     
 }

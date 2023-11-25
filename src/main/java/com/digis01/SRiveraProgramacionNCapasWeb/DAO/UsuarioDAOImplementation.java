@@ -112,4 +112,13 @@ public class UsuarioDAOImplementation implements IUsuarioDAO {
         usuario.setStatus(statusString);
         entityManager.merge(usuario);
     }
+
+    @Override
+    public Usuario GetByEmail(Usuario usuario) {
+        String emaillog = usuario.getEmail();
+        TypedQuery<Usuario> query = entityManager.createQuery("FROM Usuario WHERE email = :emaillog", Usuario.class);
+        query.setParameter("emaillog", emaillog);
+
+        return query.getSingleResult();
+    }
 }

@@ -193,7 +193,7 @@ public class UsuarioController {
             direccionDAOImplementation.Add(usuarioDireccion.direccion);
         }
 
-        return "redirect:/alumno/listado";
+        return "redirect:/usuario/listado";
     }
 
 //    @GetMapping("/add")
